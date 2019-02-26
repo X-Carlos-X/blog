@@ -11,6 +11,7 @@ namespace App\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
 
 /**
  * Class AdminController
@@ -21,11 +22,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
-     * @Route("/admin", name="app_admin")
+     * @Route("/admin/users", name="app_admin_users")
      */
-    public function index()
+    public function listUsers()
     {
-        return $this->render('admin/index.html.twig');
+        $users=$this->getDoctrine()->getRepository(User::class)->findAll();
+        return $this->render('admin/users.html.twig',['users'=>$users]);
     }
 }
 ?>

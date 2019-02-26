@@ -35,7 +35,7 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">RLogout</a>
+                    <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                 </li>
                 {% endif %}
             </ul>
@@ -51,6 +51,15 @@
 <main role="main" class="flex-shrink-0">
     <div class="container">
         {% block body %}{% endblock %}
+        <div id="fmessage">
+            {% for label,messages in app.flashes %}
+                {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endfor %}
+        </div>
     </div>
 </main>
 
