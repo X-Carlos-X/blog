@@ -6,11 +6,16 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-
+    {% if app.user is null %}
+    <title>Benvenid@: </title>
+        {% else %}
+            <title>Welcome: {{ app.user.username }}</title>
+    {% endif %}
     {% block stylesheets %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="{{ asset('css/sticky-footer-navbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-tagsinput.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
     {% endblock %}
 </head>
 <body class="d-flex flex-column h-100">
@@ -24,11 +29,11 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('app_homepage') }}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 {% if app.user is null %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+                    <a class="nav-link" href="{{ path('app_login') }}">Iniciar Sesión</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_register') }}">Register</a>
@@ -37,6 +42,19 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                 </li>
+                <li class="nav-item">
+                    <span class="nav-link">Bienvenido/a:  {{ app.user.getUsername() }}</span>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('new_post') }}">New Post</a>
+                    </li>
+                    <a class="nav-link" href="{{ path('post_myposts') }}">Mis Posts</a>
+                </li>
+                    {% if "ROLE_ADMIN" in app.user.getRoles() %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('user_theusers') }}">Editar Usuarios del Blog</a>
+                        </li>
+                        {% endif %}
                 {% endif %}
             </ul>
             <form class="form-inline mt-2 mt-md-0">

@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Post;
 
 class HomeController extends AbstractController
 {
@@ -18,6 +19,12 @@ class HomeController extends AbstractController
      * @Route ("/",name="app_homepage")
      */
     public function homepage(){
-        return $this->render('home/home.html.twig');
+        $posts = $this->getDoctrine()
+            ->getRepository(Post::class)
+            ->findAll();
+
+        return $this->render('home/home.html.twig', [
+            'posts' => $posts
+        ]);
     }
 }

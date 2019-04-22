@@ -46,7 +46,7 @@ class User implements UserInterface
     private $isActive;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user", cascade={"remove"})
      */
     private $posts;
 
@@ -83,9 +83,9 @@ class User implements UserInterface
      *
      * @see UserInterface
      */
-    public function getUsername(): string
+    public function getUsername()
     {
-        return (string) $this->email;
+        return $this->username;
     }
 
     /**
@@ -238,5 +238,10 @@ class User implements UserInterface
     public function setPlainPassword($plainPassword): void
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->username;
     }
 }

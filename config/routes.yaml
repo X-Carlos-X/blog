@@ -1,3 +1,40 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+
+api_user:
+    path: /api/user
+    controller: App\Controller\UserRestController::getRequest
+    methods: [GET]
+
+api_user_post:
+    path: /api/user
+    controller: App\Controller\UserRestController::postRequest
+    methods: [POST]
+
+post_edit:
+    path: /post/edit/{post}
+    controller: App\Controller\PostController::editPost
+
+post_delete:
+    path: /post/delete/{post}
+    controller: App\Controller\PostController::detelePost
+
+post_myposts:
+    path: /user/posts
+    controller: App\Controller\PostController::posts
+
+
+
+user_edit:
+    path: /user/edit/{user}
+    controller: App\Controller\UserController::editUser
+
+user_delete:
+    path: /user/delete/{user}
+    controller: App\Controller\UserController::deteleUser
+
+user_theusers:
+    path: /users
+    controller: App\Controller\UserController::users

@@ -61,8 +61,7 @@ class Tag
     public function addPost(Post $post): self
     {
         if (!$this->posts->contains($post)) {
-            $this->posts[] = $post;
-            $post->addTag($this);
+            $this->posts->add($post);
         }
 
         return $this;
@@ -72,9 +71,13 @@ class Tag
     {
         if ($this->posts->contains($post)) {
             $this->posts->removeElement($post);
-            $post->removeTag($this);
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->tag;
     }
 }

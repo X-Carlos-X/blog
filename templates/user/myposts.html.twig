@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Posts de: {{ app.user.getUsername() }}</h1>
+    <h2>Titulos de los Posts:</h2>
+    {% for post in posts %}
+        <div>
+            <h3>{{ post.getTitle() }}</h3>
+            <a class="btn btn-success" href="{{ path('post_edit', {'post': post.getId()}) }}">Editar</a>
+            <a class="btn btn-danger" href="{{ path('post_delete', {'post': post.getId()}) }}">Eliminar</a>
+        </div>
+    {% endfor %}
+{% endblock %}

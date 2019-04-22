@@ -13,33 +13,31 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
-class UserType extends AbstractType
+class EditUserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('username', TextType::class, [
-                'required'=>'required',
                 'attr'=>[
                     'class'=>'form-username form-control',
                     'placeholder'=>'Username'
                 ]
             ])
             ->add('email', EmailType::class, [
-                'required'=>'required',
                     'attr'=>[
                         'class'=>'form-email form-control',
                         'placeholder'=>'Email@email',
                     ]
                 ])
             ->add('plainpassword',RepeatedType::class, [
+                'required' => false,
                 'type'=>PasswordType::class,
-                'required'=>'required',
                 'first_options'=>[
                     'attr'=>[
                         'class'=>'form-password form-control',
@@ -53,8 +51,8 @@ class UserType extends AbstractType
                     ]
                 ]
             ])
-            ->add('register', SubmitType::class, [
-                'label' => 'Register',
+            ->add('edit', SubmitType::class, [
+                'label' => 'Modificar',
                 'attr' => [
                     'class' => 'btn btn-success'
                 ]

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Usuarios de: Carlos Blog</h1>
+    {% for user in users %}
+        <div>
+            <h3>{{ user.getUsername() }}</h3>
+            <a class="btn btn-success" href="{{ path('user_edit', {'user': user.getId()}) }}">Editar</a>
+            <a class="btn btn-danger" href="{{ path('user_delete', {'user': user.getId()}) }}">Eliminar</a>
+        </div>
+    {% endfor %}
+{% endblock %}

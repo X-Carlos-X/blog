@@ -4,5 +4,21 @@
     <link rel="stylesheet" href="{{ asset('css/home,css') }}">
 {% endblock %}
 {% block body %}
-    <h1>Blog</h1>
+    <h1>Blog de Carlos Royo Suárez</h1>
+    {% for post in posts %}
+        <div>
+            <h2>{{ post.getTitle() }}</h2>
+            <div>{{ post.getUser() }}</div>
+            <div>{{ post.getContent() }}</div>
+            <div>Creado el: {{ post.getCreatedAt().format('d/m/Y') }}</div>
+            <div>Publicado el: {{ post.getPublishedAt().format('d/m/Y') }}</div>
+            <div>
+                Tags:
+
+                {% for tag in post.getTags() %}
+                   <u><strong>{{ tag.getTag() }}</strong></u>,
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}

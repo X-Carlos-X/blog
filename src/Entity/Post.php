@@ -30,7 +30,8 @@ class Post
     private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="posts")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", inversedBy="posts", cascade={"persist"})
+     * @ORM\JoinTable(name="post_tag")
      */
     private $tags;
 
@@ -110,7 +111,7 @@ class Post
     public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
+            $this->tags->add($tag);
         }
 
         return $this;
