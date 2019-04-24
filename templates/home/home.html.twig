@@ -1,17 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/home,css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home,css') }}" xmlns="http://www.w3.org/1999/html">
 {% endblock %}
 {% block body %}
     <h1>Blog de Carlos Royo Suárez</h1>
     {% for post in posts %}
         <div>
             <h2>{{ post.getTitle() }}</h2>
-            <div>{{ post.getUser() }}</div>
+            <div><h5>{{ post.getUser() }}</h5></div>
             <div>{{ post.getContent() }}</div>
-            <div>Creado el: {{ post.getCreatedAt().format('d/m/Y') }}</div>
-            <div>Publicado el: {{ post.getPublishedAt().format('d/m/Y') }}</div>
+            <div>Creado el: <strong>{{ post.getCreatedAt().format('d/m/Y') }}</strong> --- Publicado el: <strong> {{ post.getPublishedAt().format('d/m/Y') }}</strong></div>
             <div>
                 Tags:
 
@@ -19,6 +18,7 @@
                    <u><strong>{{ tag.getTag() }}</strong></u>,
                 {% endfor %}
             </div>
+        </br>
         </div>
     {% endfor %}
 {% endblock %}
