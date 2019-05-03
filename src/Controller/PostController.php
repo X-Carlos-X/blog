@@ -86,4 +86,10 @@ class PostController extends AbstractController
             'posts' => $posts
         ]);
     }
+
+    public function post(Post $post) {
+        return $this->render('', [
+            'post' => $post
+        ]);
+    }
 }

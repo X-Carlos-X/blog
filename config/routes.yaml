@@ -25,7 +25,9 @@ post_myposts:
     path: /user/posts
     controller: App\Controller\PostController::posts
 
-
+post_comment:
+    path: /post/{post}/comment
+    controller: App\Controller\CommentController::comment
 
 user_edit:
     path: /user/edit/{user}
